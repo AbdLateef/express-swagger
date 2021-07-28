@@ -1,10 +1,23 @@
 const express = require("express");
 const app = express();
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
+
 import bodyParser from 'body-parser';
 import { getUserList ,findUserById } from "./user";
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json())
 const userList = getUserList(); // assume for now this is your database
+
+var options = {
+  customCss: '.swagger-ui .topbar { display: none }'
+};
+
+app.use(
+  '/api-docs',
+  swaggerUi.serve, 
+  swaggerUi.setup(swaggerDocument, options)
+);
 
 // GET Call for all users
 app.get("/users", (req, res) => {
