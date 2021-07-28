@@ -37,6 +37,7 @@ app.get("/", (req, res) => {
 });
 
 //  POST call - Means you are adding new user into database 
+//  POST call - Means you are adding new user into database 
 
 app.post("/addUser", (req, res) => {
 
